@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Watti - Full-Stack Developer</title>
+    
+    <meta name="description" content="Tech Watti - Computer Science Student specializing in software development, web technologies, and IT support">
+    <meta name="keywords" content="computer science, software developer, web development, IT support, portfolio">
+    <meta name="author" content="Tech Watti">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#3b82f6',
+                        accent: '#8b5cf6',
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#f1f5f9'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                        'slide-in': 'slideIn 0.3s ease-out'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Section title styling */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .section-title:hover::after {
+            width: 100%;
+        }
+        
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Navigation link styling */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        /* Language proficiency bars */
+        .language-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .language-progress {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .dark .language-bar {
+            background-color: #374151;
+        }
+        
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .shadow, .card-hover:hover {
+                box-shadow: none !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top no-print" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md py-4 px-6 shadow-sm no-print">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <div class="text-2xl font-bold text-primary">Tech Watti</div>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Skills</a>
+                <a href="#projects" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Projects</a>
+                <a href="#education" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Education</a>
+                <a href="#certifications" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Certifications</a>
+                <a href="#languages" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Languages</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">Contact</a>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-4">
+                <button id="themeToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    <i class="fas fa-moon dark:fa-sun"></i>
+                </button>
+                <button onclick="window.print()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition">
+                    <i class="fas fa-print mr-2"></i>Print CV
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu no-print bg-white dark:bg-gray-800" id="mobileMenu">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="text-2xl font-bold text-primary">Tech Watti</div>
+                <button id="closeMobileMenu" class="text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <a href="#home" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Home</a>
+                <a href="#about" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">About</a>
+                <a href="#skills" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Skills</a>
+                <a href="#projects" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Projects</a>
+                <a href="#education" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Education</a>
+                <a href="#certifications" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Certifications</a>
+                <a href="#languages" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Languages</a>
+                <a href="#contact" class="block py-3 px-4 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg transition nav-link">Contact</a>
+                
+                <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-gray-700 dark:text-gray-300">Theme</span>
+                        <button id="mobileThemeToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                            <i class="fas fa-moon dark:fa-sun"></i>
+                        </button>
+                    </div>
+                    <button onclick="window.print()" class="w-full px-4 py-3 bg-primary text-white rounded-lg hover:bg-secondary transition">
+                        <i class="fas fa-print mr-2"></i>Print CV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-12 md:py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center max-w-3xl mx-auto animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-primary">Hey! I'm Watti</span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+                    Full-Stack Developer
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-primary mr-2"></i>
+                        <span class="text-gray-700 dark:text-gray-300">watti0a748@gmail.com</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone text-primary mr-2"></i>
+                        <span class="text-gray-700 dark:text-gray-300">+254746053426</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fab fa-github text-primary mr-2"></i>
+                        <a href="https://github.com/watti0a748-lab" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">GitHub</a>
+                    </div>
+                </div>
+                <div class="flex justify-center space-x-4">
+                    <a href="#contact" 
+                       class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-secondary transition shadow-md">
+                        <i class="fas fa-envelope mr-2"></i>Contact Me
+                    </a>
+                    <a href="#projects"
+                       class="px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition">
+                        <i class="fas fa-code mr-2"></i>View Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">About Me</h2>
+            <div class="max-w-4xl">
+                <p class="leading-relaxed text-lg text-gray-700 dark:text-gray-300">
+                    I am a Computer Science student with a strong interest in software development, web technologies, and IT support. 
+                    I enjoy building user-focused solutions, solving technical problems, and continuously improving my skills through 
+                    hands-on projects and academic work.
+                </p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg card-hover">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold dark:text-white">Software Development</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Building efficient solutions</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg card-hover">
+                        <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-headset text-secondary text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold dark:text-white">IT Support</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Problem-solving & user assistance</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg card-hover">
+                        <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-lightbulb text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold dark:text-white">Continuous Learning</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Always expanding skills</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Programming -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow card-hover">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-terminal text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Programming</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Java</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">C++</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">C#</span>
+                    </div>
+                </div>
+                
+                <!-- Web Development -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow card-hover">
+                    <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-globe text-secondary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Web Development</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm">HTML</span>
+                        <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm">CSS</span>
+                        <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm">Tailwind</span>
+                    </div>
+                </div>
+                
+                <!-- Databases -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow card-hover">
+                    <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-database text-green-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Databases</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-sm">MySQL</span>
+                        <span class="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-sm">Firebase</span>
+                        <span class="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-sm">SQLite</span>
+                    </div>
+                </div>
+                
+                <!-- Tools -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow card-hover">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-tools text-purple-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm">Git</span>
+                        <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm">GitHub</span>
+                        <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm">VS Code</span>
+                        <span class="px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm">Figma</span>
+                    </div>
+                </div>
+                
+                <!-- Professional Skills -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow card-hover">
+                    <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-orange-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Professional Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-orange-500/10 text-orange-600 rounded-full text-sm">Customer Support</span>
+                        <span class="px-3 py-1 bg-orange-500/10 text-orange-600 rounded-full text-sm">Communication</span>
+                        <span class="px-3 py-1 bg-orange-500/10 text-orange-600 rounded-full text-sm">Problem Solving</span>
+                        <span class="px-3 py-1 bg-orange-500/10 text-orange-600 rounded-full text-sm">Teamwork</span>
+                    </div>
+                </div>
+                
+                <!-- Operating Systems -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow card-hover">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-desktop text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Operating Systems</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full text-sm">Windows</span>
+                        <span class="px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full text-sm">Linux/Ubuntu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Projects</h2>
+            <div class="space-y-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl border border-gray-200 dark:border-gray-600 card-hover">
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                        <div class="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-laptop-code text-primary text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-semibold mb-3 dark:text-white">Portfolio Website</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                A personal website designed to showcase my skills, projects, and professional background.
+                            </p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+                                <li>Responsive design for desktop and mobile</li>
+                                <li>Clean UI and clear navigation</li>
+                                <li>Built with HTML, Tailwind CSS, and JavaScript</li>
+                            </ul>
+                            <div class="mt-4">
+                                <a href="#" class="text-primary font-medium hover:underline mr-4">
+                                    <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+                                </a>
+                                <a href="#" class="text-primary font-medium hover:underline">
+                                    <i class="fab fa-github mr-1"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl border border-gray-200 dark:border-gray-600 card-hover">
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                        <div class="w-16 h-16 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-warehouse text-green-500 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-semibold mb-3 dark:text-white">Inventory Management System</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                A system for managing and tracking inventory records efficiently.
+                            </p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+                                <li>Add, update, and view inventory items</li>
+                                <li>Improved data accuracy and organization</li>
+                                <li>Strengthened database and CRUD skills</li>
+                            </ul>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                                <i class="fas fa-code mr-1"></i>Technologies: Python / Java, MySQL
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl border border-gray-200 dark:border-gray-600 card-hover">
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                        <div class="w-16 h-16 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-cloud-sun text-blue-500 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-semibold mb-3 dark:text-white">Weather Application</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                A web app that provides real-time weather updates for different locations.
+                            </p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mb-4">
+                                <li>Fetches live weather data from an external API</li>
+                                <li>Displays temperature, humidity, and conditions</li>
+                                <li>Improved API integration and error handling</li>
+                            </ul>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                                <i class="fas fa-code mr-1"></i>Technologies: HTML, CSS, JavaScript
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Experience -->
+    <section id="education" class="py-12 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div>
+                    <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Education</h2>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow card-hover">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold dark:text-white">BSc Computer Science</h3>
+                                <p class="text-primary font-medium mb-2">Kibabii University</p>
+                                <p class="text-gray-600 dark:text-gray-400">2023 – 2027</p>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="font-semibold mb-3 dark:text-white">Relevant Coursework:</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2 text-sm"></i>
+                                    <span class="text-sm dark:text-gray-300">Information Systems</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2 text-sm"></i>
+                                    <span class="text-sm dark:text-gray-300">Software Engineering</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2 text-sm"></i>
+                                    <span class="text-sm dark:text-gray-300">Data Structures</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2 text-sm"></i>
+                                    <span class="text-sm dark:text-gray-300">Operating Systems</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2 text-sm"></i>
+                                    <span class="text-sm dark:text-gray-300">Computer Networks</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2 text-sm"></i>
+                                    <span class="text-sm dark:text-gray-300">Mobile Computing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div>
+                    <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Experience</h2>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow card-hover">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mr-4">
+                                <i class="fas fa-briefcase text-secondary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold dark:text-white">Customer Communication & Technical Support</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Project-based experience</p>
+                            </div>
+                        </div>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700 dark:text-gray-300">
+                            <li>Handled user inquiries and feedback during project development</li>
+                            <li>Resolved basic technical issues for peers and users</li>
+                            <li>Practiced professional communication and follow-ups</li>
+                            <li>Collected and analyzed user feedback for system improvement</li>
+                            <li>Assisted in troubleshooting software and system issues</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-12 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Google IT Support -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl card-hover border border-gray-200 dark:border-gray-600">
+                    <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4 mx-auto">
+                        <i class="fab fa-google text-blue-600 dark:text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3 dark:text-white">Google IT Support Certificate</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center mb-4">
+                        Technical support fundamentals, networking, system administration
+                    </p>
+                    <div class="text-center">
+                        <span class="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm rounded-full">
+                            Completed 2024
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Cisco Networking -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl card-hover border border-gray-200 dark:border-gray-600">
+                    <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4 mx-auto">
+                        <i class="fab fa-cisco text-blue-600 dark:text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3 dark:text-white">Cisco Networking Basics</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center mb-4">
+                        Network fundamentals, configuration, and troubleshooting
+                    </p>
+                    <div class="text-center">
+                        <span class="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm rounded-full">
+                            Completed 2024
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Python Certificate -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl card-hover border border-gray-200 dark:border-gray-600">
+                    <div class="w-14 h-14 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4 mx-auto">
+                        <i class="fab fa-python text-green-600 dark:text-green-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-3 dark:text-white">Python for Beginners</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center mb-4">
+                        Coursera certification in Python programming fundamentals
+                    </p>
+                    <div class="text-center">
+                        <span class="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-sm rounded-full">
+                            Completed 2023
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages" class="py-12 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Languages</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow card-hover">
+                    <div class="space-y-8">
+                        <!-- English -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
+                                        <i class="fas fa-language text-blue-600 dark:text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold dark:text-white">English</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Professional working proficiency</p>
+                                    </div>
+                                </div>
+                                <span class="text-primary font-semibold text-lg">Fluent</span>
+                            </div>
+                            <div class="language-bar">
+                                <div class="language-progress bg-primary" style="width: 95%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                <span>Basic</span>
+                                <span>Conversational</span>
+                                <span>Professional</span>
+                                <span>Fluent</span>
+                                <span>Native</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Swahili -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
+                                        <i class="fas fa-globe-africa text-green-600 dark:text-green-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold dark:text-white">Swahili</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Native speaker</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-600 font-semibold text-lg">Native</span>
+                            </div>
+                            <div class="language-bar">
+                                <div class="language-progress bg-green-500" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                <span>Basic</span>
+                                <span>Conversational</span>
+                                <span>Professional</span>
+                                <span>Fluent</span>
+                                <span>Native</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Language Skills Details -->
+                    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                        <h4 class="font-semibold mb-4 dark:text-white">Language Skills</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span class="dark:text-gray-300">Technical documentation in English</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span class="dark:text-gray-300">Professional email communication</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span class="dark:text-gray-300">Customer support in both languages</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span class="dark:text-gray-300">Code comments in English</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-12 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Testimonials</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow card-hover">
+                    <div class="text-primary text-3xl mb-4">"</div>
+                    <p class="italic text-gray-700 dark:text-gray-300 mb-6">
+                        "Watti demonstrated strong problem-solving skills and a high level of professionalism 
+                        during academic projects. He consistently delivered reliable and well-structured solutions."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold dark:text-white">Academic Project Supervisor</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">University Department</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow card-hover">
+                    <div class="text-primary text-3xl mb-4">"</div>
+                    <p class="italic text-gray-700 dark:text-gray-300 mb-6">
+                        "A reliable and motivated student with excellent communication skills. 
+                        Watti worked well with users and handled technical issues calmly and effectively."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold dark:text-white">Team Member / Peer Collaborator</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Group Project</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-8 section-title text-gray-800 dark:text-white">Get In Touch</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow card-hover">
+                    <p class="text-center text-gray-700 dark:text-gray-300 mb-8">
+                        Interested in discussing opportunities or collaborating on a project? 
+                        Feel free to reach out!
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 mb-8">
+                        <a href="mailto:watti0a748@gmail.com" 
+                           class="flex items-center justify-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-secondary transition">
+                            <i class="fas fa-envelope mr-2"></i>Send Email
+                        </a>
+                        <a href="tel:+254746053426" 
+                           class="flex items-center justify-center px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition">
+                            <i class="fas fa-phone mr-2"></i>Call Now
+                        </a>
+                    </div>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://github.com/watti0a748-lab" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary text-xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-gray-800 text-gray-300">
+        <div class="container mx-auto text-center">
+            <p>© 2026 Tech Watti. All rights reserved.</p>
+            <p class="text-sm mt-2 text-gray-400">
+                Full-Stack Developer & Computer Science Student
+            </p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#certifications" class="text-gray-400 hover:text-white text-sm">Certifications</a>
+                <a href="#languages" class="text-gray-400 hover:text-white text-sm">Languages</a>
+                <a href="#skills" class="text-gray-400 hover:text-white text-sm">Skills</a>
+                <a href="#projects" class="text-gray-400 hover:text-white text-sm">Projects</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const html = document.documentElement;
+        let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+        // Apply saved theme
+        if (isDarkMode) {
+            html.classList.add('dark');
+            updateThemeIcons(true);
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            
+            if (isDarkMode) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+            
+            updateThemeIcons(isDarkMode);
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        function updateThemeIcons(isDark) {
+            const themeIcons = document.querySelectorAll('#themeToggle i, #mobileThemeToggle i');
+            themeIcons.forEach(icon => {
+                if (isDark) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        }
+
+        themeToggle?.addEventListener('click', toggleTheme);
+        mobileThemeToggle?.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMobileMenu?.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+            
+            // Update scroll progress bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate language bars on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const languageBars = entry.target.querySelectorAll('.language-progress');
+                    languageBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe languages section
+        const languagesSection = document.getElementById('languages');
+        if (languagesSection) {
+            observer.observe(languagesSection);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial active nav
+            const homeLink = document.querySelector('a[href="#home"]');
+            if (homeLink) homeLink.classList.add('active-nav');
+            
+            // Set initial theme icon
+            updateThemeIcons(isDarkMode);
+        });
+    </script>
+</body>
+</html>
